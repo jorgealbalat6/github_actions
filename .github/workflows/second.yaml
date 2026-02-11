@@ -8,6 +8,6 @@ jobs:
     steps:
       - run: echo "Hello, World!"
       - uses: actions/checkout@v3
-      - run: cat ./github/workflows/list.txt
+      - run: cat .github/workflows/list.txt
         name: display list.txt
       - run: echo "I am the step 4"
