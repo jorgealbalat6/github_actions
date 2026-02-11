@@ -1,0 +1,40 @@
+name: 10. Exercise 1 - Global Env Vars and Tests
+
+on:
+  workflow_dispatch:
+
+env:
+  PYTHON_VERSION: '3.9'
+  APP_ENV: 'testing'
+
+jobs:
+  setup_and_lint:
+    name: "Setup and Lint"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Display Environment Info
+        run: |
+          echo "Starting linting for project in ${{ env.APP_ENV }} mode."
+          echo "Using Python version: ${{ env.PYTHON_VERSION }}"
+
+  run_tests:
+    name: "Run Unit Tests"
+    runs-on: ubuntu-latest
+    needs: setup_and_lint
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Execute Unit Tests
+        run: |
+          echo "Executing unit tests in the ${{ env.APP_ENV }} environment..."
+          echo "Python version context: ${{ env.PYTHON_VERSION }}"
+          # In a real scenario, you would run: python -m unittest discover -s code/python
