@@ -9,6 +9,6 @@ jobs:
       - id: get-time
         name: Grab the current time
         run:  |
-          curTime=$ (date)
+          curTime=$(date)
           echo "currenttime=${curTime}" >> $GITHUB_OUTPUT
-      - run: echo "tHE TIME FOR THE EARLY STEP IS , ${{ github.event.inputs.thename }}"
+      - run: echo "tHE TIME FOR THE EARLY STEP IS , ${{ steps.get-time.outputs.currenttime }}"
