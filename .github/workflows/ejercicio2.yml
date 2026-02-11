@@ -7,4 +7,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        run: echo "Password: ${{ secrets.PASSWORD }}"
+        run: echo "Password = ${{ secrets.PASSWORD }}"
