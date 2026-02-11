@@ -1,0 +1,10 @@
+name: ejercicio2
+on:
+  workflow_dispatch:
+jobs:
+  login_simulation:
+    name: "simulate login"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        run: echo "Password: ${{ secrets.PASSWORD }}"
