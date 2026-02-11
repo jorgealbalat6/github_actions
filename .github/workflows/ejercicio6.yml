@@ -1,0 +1,19 @@
+name: Ejercicio 6 - Validacion JSON
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'data.json'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate JSON
+        uses: gofreitas/json-validator-action@v1.1.0
+        with:
+          files: data.json

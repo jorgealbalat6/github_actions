@@ -1,0 +1,33 @@
+name: Ejercicio9
+on:
+  workflow_dispatch:
+jobs:
+  bbdd:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: user_test
+          POSTGRES_PASSWORD: password_test
+          POSTGRES_DB: my_database
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install PostgreSQL client
+        run: sudo apt-get update && sudo apt-get install -y postgresql-client
+
+      - name: Verify Connection
+        env:
+          PGPASSWORD: password_test
+        run: |
+          psql -h localhost -U user_test -d my_database -c "SELECT 1;"
+          echo "¡Conexión exitosa a PostgreSQL!"

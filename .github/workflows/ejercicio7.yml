@@ -1,0 +1,18 @@
+name: Ejercicio7
+on:
+  workflow_dispatch:
+jobs:
+  num_aleatorio:
+    runs-on: ubuntu-latest
+    outputs:
+      valor_generado: ${{ steps.generar.outputs.num }}
+    steps:
+      - id: generar
+        run: echo "num=$RANDOM" >> $GITHUB_OUTPUT
+
+  mostrar_num:
+    runs-on: ubuntu-latest
+    needs: num_aleatorio
+    steps:
+      - name: "Recibir y mostrar numero"
+        run: echo "El número recibido del Job A es ${{ needs.num_aleatorio.outputs.valor_generado }}"

@@ -1,0 +1,12 @@
+name: Ejercicio8
+on:
+  schedule:
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+jobs:
+  cron_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ejecución programada
+        run: echo "Este job se ejecuta automáticamente todos los lunes a las 9:00 AM UTC"
