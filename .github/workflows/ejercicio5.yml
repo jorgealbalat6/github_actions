@@ -1,0 +1,12 @@
+name: Ejercicio 5
+on:
+  push:
+    branches:
+      - develop
+    paths:
+      - 'docs/.'
+jobs:
+  check-folder:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Se ha detectado un cambio en los archivos de la carpeta 'ejercicio' dentro de la rama develop."
