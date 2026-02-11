@@ -1,0 +1,13 @@
+name: Ejercicio 3
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - run: echo "Ejecutando pruebas en Python version ${{ matrix.python-version }}"
